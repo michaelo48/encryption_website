@@ -19,8 +19,20 @@ import {
   TabsTrigger 
 } from '@/components/ui/tabs';
 
+// Define the type for algorithm data
+interface Algorithm {
+  name: string;
+  category: string;
+  description: string;
+  keySize: string;
+  use: string;
+  icon: React.ReactNode;
+  color: string;
+  href: string;
+}
+
 const EncryptionHomepage = () => {
-  const algorithms = [
+  const algorithms: Algorithm[] = [
     {
       name: "AES",
       category: "Symmetric",
@@ -29,7 +41,7 @@ const EncryptionHomepage = () => {
       use: "File encryption, VPNs, SSL/TLS",
       icon: <Shield className="w-8 h-8" />,
       color: "bg-blue-500",
-      href: "/algorithms/aes" // Add href for routing
+      href: "/aes"
     },
     {
       name: "RSA",
@@ -39,7 +51,7 @@ const EncryptionHomepage = () => {
       use: "Digital signatures, HTTPS, Email",
       icon: <Key className="w-8 h-8" />,
       color: "bg-green-500",
-      href: "/algorithms/rsa"
+      href: "/rsa"
     },
     {
       name: "ECC",
@@ -49,7 +61,7 @@ const EncryptionHomepage = () => {
       use: "Mobile devices, IoT, Modern protocols",
       icon: <Cpu className="w-8 h-8" />,
       color: "bg-purple-500",
-      href: "/algorithms/ecc"
+      href: "/ecc"
     },
     {
       name: "ChaCha20",
@@ -59,7 +71,7 @@ const EncryptionHomepage = () => {
       use: "Mobile apps, High-speed encryption",
       icon: <Lock className="w-8 h-8" />,
       color: "bg-orange-500",
-      href: "/algorithms/chacha20"
+      href: "/chacha20"
     },
     {
       name: "Blowfish",
@@ -69,7 +81,7 @@ const EncryptionHomepage = () => {
       use: "Password hashing, Legacy systems",
       icon: <Shield className="w-8 h-8" />,
       color: "bg-red-500",
-      href: "/algorithms/blowfish"
+      href: "/blowfish"
     },
     {
       name: "Twofish",
@@ -79,7 +91,7 @@ const EncryptionHomepage = () => {
       use: "Disk encryption, File protection",
       icon: <Key className="w-8 h-8" />,
       color: "bg-teal-500",
-      href: "/algorithms/twofish"
+      href: "/twofish"
     }
   ];
 
@@ -106,7 +118,8 @@ const EncryptionHomepage = () => {
     }
   ];
 
-  const AlgorithmCard = ({ algo }) => (
+  // Add proper type annotation for the algo parameter
+  const AlgorithmCard = ({ algo }: { algo: Algorithm }) => (
     <Link href={algo.href} key={algo.name}>
       <Card className="bg-gray-800 border-gray-700 hover:border-gray-600 transition-all duration-300 hover:scale-105 cursor-pointer">
         <CardHeader>
@@ -151,7 +164,7 @@ const EncryptionHomepage = () => {
             Learn the principles, see live demonstrations, and understand real-world applications.
           </p>
           <div className="mt-8 flex gap-4 justify-center">
-            <Link href="/algorithms/aes">
+            <Link href="/aes">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
                 Get Started
                 <ArrowRight className="ml-2 w-4 h-4" />
@@ -228,7 +241,7 @@ const EncryptionHomepage = () => {
             Begin exploring encryption algorithms with hands-on demonstrations and in-depth tutorials.
           </p>
           <div className="flex gap-4 justify-center">
-            <Link href="/algorithms/aes">
+            <Link href="/aes">
               <Button size="lg" className="bg-white text-black hover:bg-gray-200">
                 Start Learning
               </Button>

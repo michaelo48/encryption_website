@@ -1,27 +1,105 @@
+"use client";
+
 import React, { useState } from 'react';
 import { ArrowLeft, Shield, Key, Cpu, Lock, Unlock, ClipboardCopy, CheckCircle, AlertTriangle, Code, BookOpen, RefreshCw } from 'lucide-react';
+import Link from 'next/link';
+
+// Import each component from its own file
+import { Button } from '@/components/ui/button';
 import { 
-  Button, 
   Card, 
   CardContent, 
   CardDescription, 
   CardHeader, 
-  CardTitle,
+  CardTitle
+} from '@/components/ui/card';
+import {
   Tabs,
   TabsContent,
   TabsList,
-  TabsTrigger,
-  Input,
-  Label,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  Alert,
-  AlertDescription,
-  Badge
-} from '@/components/ui/card';
+  TabsTrigger
+} from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
+
+// Add proper types for custom components
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  className?: string;
+}
+
+const Input: React.FC<InputProps> = ({ className = '', ...props }) => (
+  <input 
+    className={`w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
+    {...props}
+  />
+);
+
+interface LabelProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const Label: React.FC<LabelProps> = ({ children, className = '' }) => (
+  <label className={`block text-sm font-medium ${className}`}>
+    {children}
+  </label>
+);
+
+interface SelectProps {
+  children: React.ReactNode;
+  value: string;
+  onValueChange: (value: string) => void;
+  className?: string;
+}
+
+const Select: React.FC<SelectProps> = ({ children, value, onValueChange, className = '' }) => {
+  return (
+    <select 
+      value={value} 
+      onChange={(e) => onValueChange(e.target.value)}
+      className={`w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`}
+    >
+      {children}
+    </select>
+  );
+};
+
+interface SelectItemProps {
+  value: string;
+  children: React.ReactNode;
+}
+
+const SelectItem: React.FC<SelectItemProps> = ({ value, children }) => (
+  <option value={value}>{children}</option>
+);
+
+interface SelectContentProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const SelectContent: React.FC<SelectContentProps> = ({ children }) => <>{children}</>;
+
+interface AlertProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const Alert: React.FC<AlertProps> = ({ children, className = '' }) => (
+  <div className={`p-4 rounded-md border ${className}`}>
+    {children}
+  </div>
+);
+
+interface AlertDescriptionProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const AlertDescription: React.FC<AlertDescriptionProps> = ({ children, className = '' }) => (
+  <div className={`text-sm ${className}`}>
+    {children}
+  </div>
+);
 
 const AESPage = () => {
   const [inputText, setInputText] = useState('');
@@ -112,10 +190,12 @@ const AESPage = () => {
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
-          <Button variant="ghost" className="hover:bg-gray-800">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Algorithms
-          </Button>
+          <Link href="/">
+            <Button variant="ghost" className="hover:bg-gray-800">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Algorithms
+            </Button>
+          </Link>
         </div>
 
         {/* Hero Section */}
@@ -205,9 +285,6 @@ const AESPage = () => {
               <div className="space-y-2">
                 <Label className="text-gray-300">Key Size</Label>
                 <Select value={keySize} onValueChange={setKeySize}>
-                  <SelectTrigger className="bg-gray-900 border-gray-700 text-white">
-                    <SelectValue placeholder="Select key size" />
-                  </SelectTrigger>
                   <SelectContent className="bg-gray-800 border-gray-700">
                     <SelectItem value="128">128 bits</SelectItem>
                     <SelectItem value="192">192 bits</SelectItem>
