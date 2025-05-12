@@ -170,7 +170,7 @@ const EncryptionHomepage = () => {
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
-            <Button variant="outline" size="lg" className="border-gray-600 hover:bg-gray-800">
+            <Button variant="outline" size="lg" className=" text-gray-800 hover:text-gray-300 border-gray-600 hover:bg-gray-800">
               Learn More
             </Button>
           </div>
@@ -232,25 +232,7 @@ const EncryptionHomepage = () => {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="mt-32 text-center bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg p-12">
-          <h2 className="text-3xl font-bold mb-4">Ready to Start Your Cryptography Journey?</h2>
-          <p className="text-xl text-gray-300 mb-8">
-            Begin exploring encryption algorithms with hands-on demonstrations and in-depth tutorials.
-          </p>
-          <div className="flex gap-4 justify-center">
-            <Link href="/aes">
-              <Button size="lg" className="bg-white text-black hover:bg-gray-200">
-                Start Learning
-              </Button>
-            </Link>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-              View Documentation
-            </Button>
-          </div>
-        </div>
+        </div>    
       </div>
     </div>
   );

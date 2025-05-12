@@ -33,7 +33,7 @@ import {
   TabsList,
   TabsTrigger
 } from '@/components/ui/tabs';
-import { Badge } from '@/components/ui/badge';
+
 
 // Custom component types
 interface LabelProps {
